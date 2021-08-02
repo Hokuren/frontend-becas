@@ -1,0 +1,38 @@
+<!-- <p>modal works!</p> -->
+<div class="abrir-modal animacion fadeIn" *ngIf="modalService.modal">
+  <div class="modal" tabindex="-1" style="display: block;">
+    <div class="modal-dialog modal-large">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title modal__title">{{ titulo }}</h5>
+          <button (click)="cerrarModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <app-tabla-list
+                  (lista_tabla)="recibiendoLista($event)"
+                  [tipo]="tipo"
+                  [elementos_quitar]="elementos_quitar"
+                  [criterios]="criterios"
+                  [lista]="lista"
+                  style="width: 100%;">
+                </app-tabla-list>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+
+          <button
+            (click)="lista_recibida?.length > 0 ? enviandoListaModal() : ''"
+            type="button"
+            [class]="lista_recibida?.length > 0 ? 'button-green' : 'button-green__disabled'"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal">AGREGAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

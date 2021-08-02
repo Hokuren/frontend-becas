@@ -1,0 +1,23 @@
+<div class="mat-elevation-z8 tabla_completa">
+
+  <table *ngIf="nueva_lista?.length > 0" style="width: 100%;"
+    mat-table [dataSource]="nueva_lista" >
+    <ng-container
+      matColumnDef="nombre">
+      <th style="padding: 0 10px;" mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td style="padding: 0 10px;" mat-cell *matCellDef="let element">
+        <div [class]="element['nombre'] == nombre? 'item-select': 'item-select__no-select'"
+          (click)="selectItem(element['nombre'])">
+          {{element.nombre | lowercase }}
+        </div>
+      </td>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </table>
+  <div *ngIf="nueva_lista?.length == 0">
+    No hay mas elementos disponibles
+  </div>
+</div>

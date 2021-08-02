@@ -1,0 +1,52 @@
+.button-green {
+  background-color: #006839;
+  width: 9.75em;
+  min-width: 10%;
+  height: 100px;
+  font-family: roboto, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  color: #ffffff;
+  border: none;
+}
+
+.solicitud {
+  &__card {
+    height: 200px;
+  }
+  &__title {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    padding-top: 2.5em;
+    padding-bottom: 1em;
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+  }
+  &__card-aspirante {
+    height: max-content;
+    padding-bottom: 2em;
+  }
+}
+.input-solicitud {
+  height: 100px;
+  background-color: #E3E3E3;
+  min-width: 40%;
+  width: 88%;
+}
+.tamano-input {
+  min-width: 100%;
+}
+
+.mat-form-field-appearance-legacy
+.mat-form-field-infix {
+  height: 100px;
+}

@@ -1,0 +1,34 @@
+table {
+  width: 100%;
+}
+
+.tabla_completa {
+  width: 100%
+}
+
+.input-buscar {
+  padding-bottom: 1em;
+  outline: none;
+  text-decoration: none;
+  & input {
+    background-color: #E3E3E3;
+    height: 60px;
+    outline: none;
+    text-decoration: none;
+  }
+  & input:focus {
+    outline: none;
+    text-decoration: none;
+    border-color: inherit;
+    box-shadow: none;
+  }
+}
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    padding: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    width: 100%;
+}
+.mat-form-field-appearance-standard {
+  background-color: #E3E3E3;
+}

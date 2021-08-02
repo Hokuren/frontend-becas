@@ -1,0 +1,40 @@
+<div class="mat-elevation-z8 tabla_completa">
+  <table mat-table [dataSource]="criterios" >
+    <ng-container matColumnDef="criterio_id">
+      <th mat-header-cell *matHeaderCellDef> Criterio ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.criterio_id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Criterio </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre | lowercase}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="peso_criterio">
+      <th mat-header-cell *matHeaderCellDef> Peso del criterio </th>
+       <td mat-cell *matCellDef="let element">
+         <div class="col-sm-1">
+           <input type="number" [(ngModel)]="element['peso_criterio']" name="peso" #peso="ngModel" required>
+            <div class="alert alert-danger" *ngIf="peso.invalid && (peso.dirty || peso.touched)">
+             <div *ngIf="peso.errors.required">
+               Peso del criterio es requerido
+             </div>
+           </div>
+         </div>
+       </td>
+    </ng-container>
+
+    <ng-container matColumnDef="eliminar">
+      <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+      <td mat-cell *matCellDef="let element">
+        <img
+          [class]="convocatoria_cerrada ? 'convocatoria_disabled' : ''"
+          (click)="convocatoria_cerrada ? '' : eliminarCriterio(convocatoria_id,programa_id,element['criterio_id'],element['nombre'])"
+          class="tamano-logo" src="../../../assets/images/delete.png" alt="delete-icon">
+      </td>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+</div>

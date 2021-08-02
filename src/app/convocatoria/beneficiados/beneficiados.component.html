@@ -1,0 +1,29 @@
+<div class="beneficiados">
+  <div class="card border-dark mb-3 beneficiados__card">
+    <div class="beneficiados__title">Selecione Convocatoria</div>
+    <div class="beneficiados__content">
+      <select (change)="getBeneficiariosConvocatoria(convocatoria_id)"
+        [(ngModel)]="convocatoria_id"
+        class="beneficiados__content--select" name="cars" id="cars">
+        <option *ngFor="let convocatoria of convocatorias"
+          [value]="convocatoria.convocatoria_id">{{ convocatoria.nombre }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div *ngIf="solicitudes?.length > 0" class="card border-dark mb-3 my-5 beneficiados__card-aspirante">
+    <div class="beneficiados__title">Resultados Aspirantes</div>
+    <div class="beneficiados__content">
+      <div class="beneficiados__content--beneficiarios">
+        Beneficiarios
+      </div>
+      <app-tabla-solicitud
+        style="width: 100%;"
+        [buscador]="buscador"
+        [paginable]="paginable"
+        [displayedColumns]="displayedColumns"
+        [solicitudes]="solicitudes">
+      </app-tabla-solicitud>
+    </div>
+  </div>
+</div>

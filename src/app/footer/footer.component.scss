@@ -1,0 +1,12 @@
+@import "../../assets/styles/config/variables";
+
+.bg-primary {
+  background-color: $color-primary !important;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+  height: 60px;
+  width: 100%;
+}

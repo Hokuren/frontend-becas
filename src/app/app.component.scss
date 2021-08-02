@@ -1,0 +1,20 @@
+.scroll_total {
+  overflow-y: auto;
+  height: calc(100vh - 190px);
+}
+
+:root {
+  --shadow: #43a047;
+  --scrollbarBG: #eee;
+  --thumbBG: #66bb6a;
+}
+::-webkit-scrollbar {
+  width: 16px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  box-shadow: 0 -100vh 0 100vh var(--shadow), 0 0 15px 5px black;
+}

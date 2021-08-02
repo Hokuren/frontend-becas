@@ -1,0 +1,113 @@
+<app-modal *ngIf="lista?.length > 0"
+  (lista_modal)="recibiendoListaModal($event);"
+  [tipo]="tipo"
+  [elementos_quitar]="elementos_quitar"
+  [titulo]="title"
+  [criterios]="criterios"
+  [lista]="lista">
+</app-modal>
+
+
+<div *ngIf="charge" class="convocatoria">
+  <div class="card border-dark mb-3 convocatoria__card">
+    <div class="convocatoria__content">
+      <div class="convocatoria__content--item">
+        <div class="convocatoria__title padding_left">Convocatoria Seleccionada</div>
+        <select (change)="getConvocatoria(convocatoria_id)"
+          [(ngModel)]="convocatoria_id"
+          class="convocatoria__content--select" name="cars" id="cars">
+          <option *ngFor="let convocatoria of convocatorias"
+            [value]="convocatoria.convocatoria_id">{{ convocatoria.nombre }}
+          </option>
+        </select>
+      </div>
+      <div *ngIf="convocatoria_id > 0"
+        class="convocatoria__content--item">
+        <div class="convocatoria__title padding_left">Monto</div>
+        <form
+          class="input-convocatoria">
+          <mat-form-field class="tamano-input">
+            <mat-label>Monto</mat-label>
+            <input [(ngModel)]="monto"
+                   [attr.disabled]="validarCerrada()"
+                   style="height: calc(100px - 1.25em)" type="number" matInput [formControl]="numberFormControl" [errorStateMatcher]="matcher"
+                   placeholder="Ex. 500000000">
+            <mat-hint>¡Los errores aparecen instantáneamente!</mat-hint>
+            <mat-error *ngIf="numberFormControl.hasError('number') && !numberFormControl.hasError('required')">
+              Por favor ingrese un monto valido
+            </mat-error>
+            <mat-error *ngIf="numberFormControl.hasError('required')">
+              El monto de la convocatoria es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+      <div *ngIf="convocatoria_id > 0">
+        <button (click)="getConvocatoria(convocatoria_id)" class="button-green" type="button" name="button">BUSCAR</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="convocatoria_id > 0"
+    class="card border-dark mb-3 my-5 convocatoria__card-large">
+    <div class="convocatoria__content-center">
+      <div class="convocatoria__subtitle">Datos Aspitante</div>
+      <div>
+        <button [class]="validarCerrada() ? 'convocatoria_disabled': ''"
+          (click)="validarCerrada() ? '' : abrirModal('programa',0)" class="button-green__large">AGREGAR PROGRAMA</button>
+      </div>
+    </div>
+    <div *ngFor="let programa of convocatoria"
+      class="convocatoria__content">
+      <mat-accordion class="tamano-acordeon">
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ programa.nombre }}
+            </mat-panel-title>
+            <mat-panel-description>
+              <span [class]="validarCriterios(programa.criterios) !== 100 ? 'red-text': ''">
+                Porcentaje total de los criterios es {{ validarCriterios(programa.criterios) }}%
+                <strong *ngIf="validarCriterios(programa.criterios) != 100">diferente de 100% </strong>
+                <ul [class]="programa.criterios?.length == 0 ? 'orange-text': ''"
+                  *ngIf="programa.criterios?.length == 0">No se puede guardar sin criterios</ul>
+              </span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-tabla-criterios *ngIf="programa.criterios?.length > 0"
+            [convocatoria_cerrada]="validarCerrada()"
+            [convocatoria_id]="convocatoria_id"
+            [programa_id]="programa.programa_id"
+            [criterios]="programa.criterios">
+          </app-tabla-criterios>
+          <div class="convocatoria__buttons">
+            <div (click)="validarCerrada() ? '' : eliminarPrograma(convocatoria_id,programa.programa_id,programa.nombre)"
+              [class]="validarCerrada() ? 'convocatoria_disabled': ''"
+              class="convocatoria__content--button-delete">
+              -
+            </div>
+            <div [class]="validarCerrada() ? 'convocatoria_disabled': ''"
+             (click)="validarCerrada() ? '' : abrirModal('criterio',programa.programa_id,programa.criterios)" class="convocatoria__content--button">
+              +
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+  <div *ngIf="convocatoria_id > 0"
+    class="convocatoria__content-buttom ">
+    <button
+      [disabled]="validarCerrada()"
+      (click)="(validarCerrada() || validarGuardar(convocatoria) ) ? '' : updateConvocatoria(convocatoria_id,convocatoria)"
+      [class]="(validarCerrada() || validarGuardar(convocatoria) ) ? 'button-green__disabled margin-right' : 'button-green__max-large margin-right'">
+      GUARDAR
+    </button>
+    <button
+      [disabled]="(validarCerrada() || validarTodosCriterios(convocatoria))"
+      (click)="(validarCerrada() || validarTodosCriterios(convocatoria)) ? '' : postGenerarBeneficiarios(convocatoria_id)"
+      [class]="(validarCerrada() || validarTodosCriterios(convocatoria)) ? 'button-green__disabled' : 'button-green__max-large'">
+      GENERAR BENEFICIARIOS
+    </button>
+  </div>
+</div>

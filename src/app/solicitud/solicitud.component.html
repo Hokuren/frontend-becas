@@ -1,0 +1,39 @@
+<div class="solicitud">
+  <div class="card border-dark mb-3 solicitud__card">
+    <div class="solicitud__title">Buscar aspirante</div>
+    <div class="solicitud__content">
+      <form class="input-solicitud">
+        <mat-form-field class="tamano-input">
+          <mat-label>Numero de Documento</mat-label>
+          <input [(ngModel)]="cedula" style="height: calc(100px - 1.25em)" type="number" matInput [formControl]="numberFormControl" [errorStateMatcher]="matcher"
+                 placeholder="Ex. 1075000000">
+          <mat-hint>¡Los errores aparecen instantáneamente!</mat-hint>
+          <mat-error *ngIf="numberFormControl.hasError('number') && !numberFormControl.hasError('required')">
+            Por favor ingrese un numero de documento valido
+          </mat-error>
+          <mat-error *ngIf="numberFormControl.hasError('required')">
+            El numero de documento es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+      <div>
+        <button
+          routerLink="/aspirante/{{cedula}}/solicitud"
+          class="button-green" type="button" name="button">
+          BUSCAR
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="solicitudes?.length > 0"
+    class="card border-dark mb-3 my-5 solicitud__card-aspirante">
+    <div class="solicitud__title">Datos Aspitante</div>
+    <div class="solicitud__content">
+      <app-tabla-solicitud
+        style="width: 100%;"
+        [displayedColumns]='displayedColumns'
+        [solicitudes]="solicitudes">
+      </app-tabla-solicitud>
+    </div>
+  </div>
+</div>

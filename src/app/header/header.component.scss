@@ -1,0 +1,94 @@
+@import "../../assets/styles/config/variables";
+
+.bg-primary {
+  background-color: #ffffff !important;
+}
+
+.navbar {
+  height: 80px;
+  border: 1px solid #000000;
+  @media screen and (min-width: 992px){
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+}
+
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+    @media screen and (min-width: 992px){
+      height: 100%;
+    }
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  font-family: roboto, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  color: #000000;
+  @media screen and (min-width: 992px){
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.navbar-expand-lg .navbar-collapse {
+    font-family: roboto, sans-serif;
+    font-style: normal;
+    @media screen and (min-width: 992px){
+      font-weight: 900;
+      height: 100%;
+    }
+}
+
+.navbar-expand-lg .navbar-nav {
+  @media screen and (min-width: 992px){
+    height: 100%;
+  }
+}
+
+.navbar-toggler {
+  background: #000000;
+}
+
+.active{
+  background-color: #006839;
+  color: #ffffff !important;
+  @media screen and (min-width: 992px){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+}
+
+.tamano-logo {
+  height: 2.5em;
+  width: 11.25em;
+  display: flex;
+  @media screen and (max-width: 992px){
+    height: 1.6em;
+    width: 6em;
+  }
+}
+
+.dropdown, .dropend, .dropstart, .dropup {
+  background-color: #ffffff;
+  @media screen and (max-width: 991px){
+    border: 1px solid #000000;
+  }
+}
+
+.dropdown-menu.show {
+  @media screen and (max-width: 991px){
+    background-color: #ffffff !important;
+    position: absolute !important;
+    width: 100%;
+  }
+}

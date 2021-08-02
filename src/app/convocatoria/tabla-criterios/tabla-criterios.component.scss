@@ -1,0 +1,42 @@
+table {
+  width: 100%;
+}
+
+.tabla_completa {
+  width: 100%
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    padding: 0 10px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    width: 100%;
+}
+.mat-form-field-appearance-standard {
+  background-color: #E3E3E3;
+}
+
+.tamano-logo {
+  width: 20px;
+  height: 20px;
+}
+
+.convocatoria_disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.alert {
+  position: absolute;
+}
+.col-sm-1 {
+  margin-top: -0.4em;  
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+  margin: auto 0;
+}
